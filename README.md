@@ -101,6 +101,7 @@ WHERE page.page_namespace = 0;
 
 **Extract MediaWiki pages and Convert to Markdown**:
 
+(I found markdown_github in pandoc fits better than markdown.)
 Create a Python script (e.g., convert_wiki_to_markdown.py) with the following code:
 ```python    
 import sqlite3
@@ -109,7 +110,7 @@ import os
 
 # Function to convert wikitext to Markdown using Pandoc
 def convert_to_markdown(wikitext_content):
-    process = subprocess.Popen(['pandoc', '-f', 'mediawiki', '-t', 'markdown'], 
+    process = subprocess.Popen(['pandoc', '-f', 'mediawiki', '-t', 'markdown_github'], 
                                stdin=subprocess.PIPE, 
                                stdout=subprocess.PIPE)
     markdown_content, _ = process.communicate(input=wikitext_content.encode('utf-8'))
